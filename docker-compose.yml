@@ -1,0 +1,25 @@
+version: "3"
+services:
+  #v4l2rtspserver:
+  #  container_name: v4l2rtspserver
+  #  image: mpromonet/v4l2rtspserver
+  #  restart: unless-stopped
+  #  devices:
+  #  - /dev/video0:/dev/video0
+  #  ports:
+  #  - '8554:8554'
+  #  command: ["-G","640x480x25", "-S"]
+
+  nodered:
+    container_name: nodered
+    image: rmoliva/node-red
+    restart: unless-stopped
+    privileged: true
+    environment:
+    - TZ=Europe/Madrid
+    ports:
+    - '1880:1880'
+    volumes:
+    - /home/roliva/workspace/docker/nodered/data:/data
+    - /dev/video0:/dev/video0
+
